@@ -16,7 +16,7 @@ O repositório da matéria de PL / SQL da ESPM
     - [Markdown All in One](https://marketplace.visualstudio.com/items?itemName=yzhang.markdown-all-in-one)
     - [Git Lens](https://marketplace.visualstudio.com/items?itemName=eamodio.gitlens):
       histórico de alterações de arquivos e facilitador de git formatador geral
-    - [Prettier SQL VSCode](https://marketplace.visualstudio.com/items?itemName=inferrinizzard.prettier-sql-vscode):
-      formatador geral de SQL
+    - [Oracle Developer Tools for VS Code (SQL and PLSQL)](https://marketplace.visualstudio.com/items?itemName=Oracle.oracledevtools):
+      ferramentas de desenvolvedor de PL/SQL da Oracle
     - [Remote - WSL](https://marketplace.visualstudio.com/items?itemName=ms-vscode-remote.remote-wsl):
       acessar arquivos do WSL
