@@ -1,10 +1,10 @@
-# PL / SQL ESPM
+# PL/SQL ESPM
 
-O repositório da matéria de PL / SQL da ESPM
+O repositório da matéria de PL/SQL da ESPM
 
 ## Ferramentas usadas
 
-- [Oracle LiveSQL](https://livesql.oracle.com/): PL-SQL na web
+- [Oracle LiveSQL](https://livesql.oracle.com/): PL/SQL na web
 - [VSCode](https://code.visualstudio.com/): editor de código geral e extensível
   - Temas de cores
     - [Bluloco Dark theme](https://marketplace.visualstudio.com/items?itemName=uloco.theme-bluloco-dark)
