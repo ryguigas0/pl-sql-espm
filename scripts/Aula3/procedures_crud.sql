@@ -7,7 +7,8 @@ create table CIDADES (
 
 -- Criar o procedure
 create or replace procedure SP_CIDADES (
-    VCOD_CIDADE integer,
+ -- Pega o tipo atuomático na procedure
+    VCOD_CIDADE CIDADES.COD_CIDADE%TYPE,
     VNOME varchar2,
     VUF char,
     VOPR char
