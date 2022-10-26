@@ -1,13 +1,12 @@
-CREATE OR REPLACE FUNCTION GERAVALORVENDA (
-    VAR_VL_CUST IN NUMBER
+create or replace function GERAVALORVENDA(
+    VAR_VL_CUST in number
 )
  -- Escopo das variáveis
  -- nome_var tipo := valor;
- RETURN NUMBER IS VAR_VL_VENDA_PRODUTO NUMBER := 0;
-
-TAXA_LUCRO NUMBER := 3.0;
-
-BEGIN
+return number is
+    VAR_VL_VENDA_PRODUTO number := 0;
+    TAXA_LUCRO           number := 3.0;
+begin
     VAR_VL_VENDA_PRODUTO := VAR_VL_CUST + (VAR_VL_CUST * TAXA_LUCRO);
-    RETURN VAR_VL_VENDA_PRODUTO;
-END;
+    return VAR_VL_VENDA_PRODUTO;
+end;
