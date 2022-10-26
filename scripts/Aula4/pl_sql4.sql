@@ -5,7 +5,7 @@
 create or replace trigger INSERT_JOB_HISTORY after
     insert on EMPLOYEES for each row
 begin
-    ADD_JOB_HISTORY (:NEW.EMPLOYEE_ID, :NEW.HIRE_DATE, SYSDATE, :NEW.JOB_ID, :NEW.DEPARTMENT_ID);
+    ADD_JOB_HISTORY(:NEW.EMPLOYEE_ID, :NEW.HIRE_DATE, SYSDATE, :NEW.JOB_ID, :NEW.DEPARTMENT_ID);
 end;
 /
 
@@ -39,7 +39,7 @@ end;
 -- alterado para SA_REP
 
 create or replace trigger UPDATE_COMMISSION_PCT after
-    update of JOB_ID on EMPLOYEES for each row when (NEW.JOB_ID = 'SA_REP')
+    update of JOB_ID on EMPLOYEES for each row when(NEW.JOB_ID = 'SA_REP')
 begin
     update EMPLOYEES
     set

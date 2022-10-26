@@ -4,7 +4,7 @@ create or replace trigger UPDATE_TABLE after
 begin
  -- Procedure de fazer insert na tabela de logs
  --  Procedures em Triggers não precisam de exec
-    ADD_LOG (:OLD.COL_A, :OLD.COL_B, SYSDATE);
+    ADD_LOG(:OLD.COL_A, :OLD.COL_B, SYSDATE);
  -- :NEW -> Estado APÓS
  -- :OLD -> Estado ANTES
 end;
