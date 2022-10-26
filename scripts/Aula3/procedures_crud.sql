@@ -1,34 +1,34 @@
 -- Criar a tabela que é usada no procedure
-create table CIDADES (
+create table CIDADES(
     COD_CIDADE integer not null,
-    NOME varchar2 (100),
-    UF char (2)
+    NOME varchar2(100),
+    UF char(2)
 );
 
 -- Criar o procedure
-create or replace procedure SP_CIDADES (
+create or replace procedure SP_CIDADES(
  -- Pega o tipo atuomático na procedure
     VCOD_CIDADE CIDADES.COD_CIDADE%TYPE,
     VNOME varchar2,
     VUF char,
     VOPR char
-) is
+)is
 begin
-    if (VOPR = 'i') then
-        insert into CIDADES (
+    if(VOPR = 'i')then
+        insert into CIDADES(
             COD_CIDADE,
             NOME,
             UF
-        ) values (
+        )values(
             VCOD_CIDADE,
             VNOME,
             VUF
         );
-    elsif (VOPR = 'd') then
+    elsif(VOPR = 'd')then
         delete from CIDADES
         where
             COD_CIDADE = VCOD_CIDADE;
-    elsif (VOPR = 'u') then
+    elsif(VOPR = 'u')then
         update CIDADES
         set
             NOME = VNOME,
@@ -40,10 +40,10 @@ end SP_CIDADES;
 /
 
 -- Executar sp_cidades com insert
-EXEC SP_CIDADES (2, 'SÃO JOSÉ DOS CAMPOS', 'SJ', 'i');
+EXEC SP_CIDADES(2, 'SÃO JOSÉ DOS CAMPOS', 'SJ', 'i');
 
 -- Executar sp_cidades com update
-EXEC SP_CIDADES (2, 'SÃO JOSÉ DOS CAMPOS', 'SC', 'u');
+EXEC SP_CIDADES(2, 'SÃO JOSÉ DOS CAMPOS', 'SC', 'u');
 
 -- Executar sp_cidades com delete
-EXEC SP_CIDADES (2, 'SÃO JOSÉ DOS CAMPOS', 'SC', 'd');
+EXEC SP_CIDADES(2, 'SÃO JOSÉ DOS CAMPOS', 'SC', 'd');
