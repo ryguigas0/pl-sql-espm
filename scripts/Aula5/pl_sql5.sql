@@ -68,6 +68,7 @@ begin
         VAR_DIFF_SALARIO := VAR_EMPLOYEE_SALARY - VAR_MEDIA_SALARIO;
         VAR_SOMA_DIFF := VAR_SOMA_DIFF + VAR_DIFF_SALARIO;
     end loop;
+    close C_EMPLOYEES_JOBS;
     DBMS_OUTPUT.PUT_LINE('Soma das diferenças de salário: '
         || VAR_SOMA_DIFF);
 end;
@@ -80,9 +81,9 @@ end;
 -- carreira na empresa 2. Funcionários de TI: 3 vezes o salario atual + meio salário atual para cada ano
 -- de trabalha na empresa
 
--- Funcionários de TI -> contém TI no job_id
--- Funcionários de Marketing -> contém MK no job_id
--- Funcionários de Administração -> contém AD no job_id
+-- Funcionários de TI -> Departamento 60
+-- Funcionários de Marketing ->  Departamento 20
+-- Funcionários de Administração ->  Departamento 10
 
 -- Pegar todos os funcionários
 -- Contar quantas promoções esse funcionário teve
@@ -93,43 +94,45 @@ end;
 declare
     cursor C_BONUS_SALARIO is
         select
-            E.EMPLOYEE_ID,
-            E.SALARY,
-            E.HIRE_DATE,
-            E.JOB_ID,
-            count(JH.JOB_ID)
+            EMPLOYEE_ID,
+            SALARY,
+            HIRE_DATE,
+            DEPARTMENT_ID
         from
-            JOB_HISTORY JH
-            inner join EMPLOYEES E
-            on E.EMPLOYEE_ID = JH.EMPLOYEE_ID
-        group by
-            E.EMPLOYEE_ID,
-            E.SALARY,
-            E.HIRE_DATE,
-            E.JOB_ID;
-    VAR_EMPL_ID           EMPLOYEES.EMPLOYEE_ID%TYPE;
-    VAR_EMPL_SALARIO      EMPLOYEES.SALARY%TYPE;
-    VAR_EMPL_HIRE_DATE    EMPLOYEES.HIRE_DATE%TYPE;
-    VAR_EMPL_JOB_ID       EMPLOYEES.JOB_ID%TYPE;
-    VAR_EMPL_PROMOCOES    number;
-    VAR_EMPL_ANOS_EMPRESA number;
-    VAR_BONUS             EMPLOYEES.SALARY%TYPE := 0;
+            EMPLOYEES
+        where
+            DEPARTMENT_ID in(60,
+            20,
+            10);
+    VAR_EMPL_ID            EMPLOYEES.EMPLOYEE_ID%TYPE;
+    VAR_EMPL_SALARIO       EMPLOYEES.SALARY%TYPE;
+    VAR_EMPL_HIRE_DATE     EMPLOYEES.HIRE_DATE%TYPE;
+    VAR_EMPL_DEPARTMENT_ID EMPLOYEES.DEPARTMENT_ID%TYPE;
+    VAR_EMPL_PROMOCOES     number := 0;
+    VAR_EMPL_ANOS_EMPRESA  number := 0;
+    VAR_BONUS              EMPLOYEES.SALARY%TYPE := 0;
 begin
     open C_BONUS_SALARIO;
     loop
-        fetch C_BONUS_SALARIO into VAR_EMPL_ID, VAR_EMPL_SALARIO, VAR_EMPL_HIRE_DATE, VAR_EMPL_JOB_ID, VAR_EMPL_PROMOCOES;
+        fetch C_BONUS_SALARIO into VAR_EMPL_ID, VAR_EMPL_SALARIO, VAR_EMPL_HIRE_DATE, VAR_EMPL_DEPARTMENT_ID;
         exit when C_BONUS_SALARIO%NOTFOUND;
-        if(INSTR(VAR_EMPL_JOB_ID, 'MK', 1) > 0)or(INSTR(VAR_EMPL_JOB_ID, 'AD', 1) > 0)then
-            VAR_BONUS := (2 * VAR_EMPL_SALARIO) + (1.5 * VAR_EMPL_PROMOCOES);
-        elsif INSTR(VAR_EMPL_JOB_ID, 'TI', 1) > 0 then
-            VAR_EMPL_ANOS_EMPRESA := EXTRACT(YEAR from SYSDATE()) - EXTRACT(YEAR from VAR_EMPL_HIRE_DATE);
+        if(VAR_EMPL_DEPARTMENT_ID = 20)or(VAR_EMPL_DEPARTMENT_ID = 10)then
+            select
+                count(EMPLOYEE_ID)into VAR_EMPL_PROMOCOES
+            from
+                JOB_HISTORY
+            where
+                EMPLOYEE_ID = VAR_EMPL_ID;
+            VAR_BONUS := (2 * VAR_EMPL_SALARIO) + (1.5 * VAR_EMPLOYEE_SALARY * VAR_EMPL_PROMOCOES);
+        elsif VAR_EMPL_DEPARTMENT_ID = 60 then
+ -- VAR_EMPL_ANOS_EMPRESA := EXTRACT(YEAR from SYSDATE()) - EXTRACT(YEAR from VAR_EMPL_HIRE_DATE);
+            VAR_EMPL_ANOS_EMPRESA := ((SYSDATE() - VAR_EMPL_HIRE_DATE) / 365);
             VAR_BONUS := 3 * VAR_EMPL_SALARIO + (0.5 * VAR_EMPL_SALARIO * VAR_EMPL_ANOS_EMPRESA);
         end if;
-        DBMS_OUTPUT.PUT_LINE('Funcionario de ID '
-            || VAR_EMPL_ID
-            || ' do cargo '
-            || VAR_EMPL_JOB_ID
-            || ' tem o bonus de '
+        DBMS_OUTPUT.PUT_LINE(VAR_EMPL_ID
+            || ' do departamento '
+            || VAR_EMPL_DEPARTMENT_ID
+            || ' recebe um bônus de '
             || VAR_BONUS);
     end loop;
 end;
