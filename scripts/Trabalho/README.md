@@ -1,6 +1,6 @@
 # Banco de dados - Clube de Jogos
 
-[Notion do trabalho](https://south-golf-5a5.notion.site/Trabalho-em-grupo-7eedb03d6482467c81b5a8f1fa401215)
+## [Notion](https://south-golf-5a5.notion.site/Trabalho-em-grupo-7eedb03d6482467c81b5a8f1fa401215)
 
 ## MER
 
