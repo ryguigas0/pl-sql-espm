@@ -77,3 +77,203 @@ create table DB_LOCAL_LOG(
     LOCAL_LOG_ID NUMBER not null constraint LOCAL_LOG_PK primary key,
     LOCAL_LOG_ALTERACAO DATE not null
 );
+
+create or replace procedure CUD_MEMBRO(
+    VAR_OPR varchar2(1),
+    VAR_MEMBRO_ID MEMBROS.MEMBRO_ID%TYPE,
+    VAR_MEMBRO_NOME MEMBROS.MEMBRO_ID%TYPE,
+    VAR_MEMBRO_RG MEMBROS.MEMBRO_ID%TYPE,
+    VAR_MEMBRO_TELEFONE MEMBROS.MEMBRO_ID%TYPE,
+    VAR_MEMBRO_CEP MEMBROS.MEMBRO_ID%TYPE
+)is
+begin
+    if(VOPR = 'i')then
+        insert into MEMBRO(
+            MEMBRO_ID,
+            MEMBRO_NOME,
+            MEMBRO_RG,
+            MEMBRO_TELEFONE,
+            MEMBRO_CEP
+        )values(
+            VAR_MEMBRO_ID,
+            VAR_MEMBRO_NOME,
+            VAR_MEMBRO_RG,
+            VAR_MEMBRO_TELEFONE,
+            VAR_MEMBRO_CEP
+        );
+    elsif(VOPR = 'd')then
+        delete from MEMBRO
+        where
+            MEMBRO_ID = VAR_MEMBRO_ID;
+    elsif(VOPR = 'u')then
+        update MEMBRO
+        set
+            MEMBRO_NOME = VAR_MEMBRO_NOME,
+            MEMBRO_RG = VAR_MEMBRO_RG,
+            MEMBRO_TELEFONE = VAR_MEMBRO_TELEFONE,
+            MEMBRO_CEP = VAR_MEMBRO_CEP
+        where
+            MEMBRO_ID = VAR_MEMBRO_ID;
+    end if;
+end CUD_MEMBRO;
+/
+
+-- create or replace procedure CUD_MEMBRO(
+--     VAR_OPR varchar2(1),
+--     VAR_MEMBRO_ID MEMBROS.MEMBRO_ID%TYPE,
+--     VAR_MEMBRO_NOME MEMBROS.MEMBRO_ID%TYPE,
+--     VAR_MEMBRO_RG MEMBROS.MEMBRO_ID%TYPE,
+--     VAR_MEMBRO_TELEFONE MEMBROS.MEMBRO_ID%TYPE,
+--     VAR_MEMBRO_CEP MEMBROS.MEMBRO_ID%TYPE
+-- )is
+-- begin
+--     if(VOPR = 'i')then
+--         insert into MEMBRO(
+--             MEMBRO_ID,
+--             MEMBRO_NOME,
+--             MEMBRO_RG,
+--             MEMBRO_TELEFONE,
+--             MEMBRO_CEP
+--         )values(
+--             VAR_MEMBRO_ID,
+--             VAR_MEMBRO_NOME,
+--             VAR_MEMBRO_RG,
+--             VAR_MEMBRO_TELEFONE,
+--             VAR_MEMBRO_CEP
+--         );
+--     elsif(VOPR = 'd')then
+--         delete from MEMBRO
+--         where
+--             MEMBRO_ID = VAR_MEMBRO_ID;
+--     elsif(VOPR = 'u')then
+--         update MEMBRO
+--         set
+--             MEMBRO_NOME = VAR_MEMBRO_NOME,
+--             MEMBRO_RG = VAR_MEMBRO_RG,
+--             MEMBRO_TELEFONE = VAR_MEMBRO_TELEFONE,
+--             MEMBRO_CEP = VAR_MEMBRO_CEP
+--         where
+--             MEMBRO_ID = VAR_MEMBRO_ID;
+--     end if;
+-- end CUD_MEMBRO;
+-- /
+
+-- create or replace procedure CUD_MEMBRO(
+--     VAR_OPR varchar2(1),
+--     VAR_MEMBRO_ID MEMBROS.MEMBRO_ID%TYPE,
+--     VAR_MEMBRO_NOME MEMBROS.MEMBRO_ID%TYPE,
+--     VAR_MEMBRO_RG MEMBROS.MEMBRO_ID%TYPE,
+--     VAR_MEMBRO_TELEFONE MEMBROS.MEMBRO_ID%TYPE,
+--     VAR_MEMBRO_CEP MEMBROS.MEMBRO_ID%TYPE
+-- )is
+-- begin
+--     if(VOPR = 'i')then
+--         insert into MEMBRO(
+--             MEMBRO_ID,
+--             MEMBRO_NOME,
+--             MEMBRO_RG,
+--             MEMBRO_TELEFONE,
+--             MEMBRO_CEP
+--         )values(
+--             VAR_MEMBRO_ID,
+--             VAR_MEMBRO_NOME,
+--             VAR_MEMBRO_RG,
+--             VAR_MEMBRO_TELEFONE,
+--             VAR_MEMBRO_CEP
+--         );
+--     elsif(VOPR = 'd')then
+--         delete from MEMBRO
+--         where
+--             MEMBRO_ID = VAR_MEMBRO_ID;
+--     elsif(VOPR = 'u')then
+--         update MEMBRO
+--         set
+--             MEMBRO_NOME = VAR_MEMBRO_NOME,
+--             MEMBRO_RG = VAR_MEMBRO_RG,
+--             MEMBRO_TELEFONE = VAR_MEMBRO_TELEFONE,
+--             MEMBRO_CEP = VAR_MEMBRO_CEP
+--         where
+--             MEMBRO_ID = VAR_MEMBRO_ID;
+--     end if;
+-- end CUD_MEMBRO;
+-- /
+
+-- create or replace procedure CUD_MEMBRO(
+--     VAR_OPR varchar2(1),
+--     VAR_MEMBRO_ID MEMBROS.MEMBRO_ID%TYPE,
+--     VAR_MEMBRO_NOME MEMBROS.MEMBRO_ID%TYPE,
+--     VAR_MEMBRO_RG MEMBROS.MEMBRO_ID%TYPE,
+--     VAR_MEMBRO_TELEFONE MEMBROS.MEMBRO_ID%TYPE,
+--     VAR_MEMBRO_CEP MEMBROS.MEMBRO_ID%TYPE
+-- )is
+-- begin
+--     if(VOPR = 'i')then
+--         insert into MEMBRO(
+--             MEMBRO_ID,
+--             MEMBRO_NOME,
+--             MEMBRO_RG,
+--             MEMBRO_TELEFONE,
+--             MEMBRO_CEP
+--         )values(
+--             VAR_MEMBRO_ID,
+--             VAR_MEMBRO_NOME,
+--             VAR_MEMBRO_RG,
+--             VAR_MEMBRO_TELEFONE,
+--             VAR_MEMBRO_CEP
+--         );
+--     elsif(VOPR = 'd')then
+--         delete from MEMBRO
+--         where
+--             MEMBRO_ID = VAR_MEMBRO_ID;
+--     elsif(VOPR = 'u')then
+--         update MEMBRO
+--         set
+--             MEMBRO_NOME = VAR_MEMBRO_NOME,
+--             MEMBRO_RG = VAR_MEMBRO_RG,
+--             MEMBRO_TELEFONE = VAR_MEMBRO_TELEFONE,
+--             MEMBRO_CEP = VAR_MEMBRO_CEP
+--         where
+--             MEMBRO_ID = VAR_MEMBRO_ID;
+--     end if;
+-- end CUD_MEMBRO;
+-- /
+
+-- create or replace procedure CUD_MEMBRO(
+    VAR_OPR varchar2(1),
+    VAR_MEMBRO_ID MEMBROS.MEMBRO_ID%TYPE,
+    VAR_MEMBRO_NOME MEMBROS.MEMBRO_ID%TYPE,
+    VAR_MEMBRO_RG MEMBROS.MEMBRO_ID%TYPE,
+    VAR_MEMBRO_TELEFONE MEMBROS.MEMBRO_ID%TYPE,
+    VAR_MEMBRO_CEP MEMBROS.MEMBRO_ID%TYPE
+)is
+begin
+    if(VOPR = 'i')then
+        insert into MEMBRO(
+            MEMBRO_ID,
+            MEMBRO_NOME,
+            MEMBRO_RG,
+            MEMBRO_TELEFONE,
+            MEMBRO_CEP
+        )values(
+            VAR_MEMBRO_ID,
+            VAR_MEMBRO_NOME,
+            VAR_MEMBRO_RG,
+            VAR_MEMBRO_TELEFONE,
+            VAR_MEMBRO_CEP
+        );
+    elsif(VOPR = 'd')then
+        delete from MEMBRO
+        where
+            MEMBRO_ID = VAR_MEMBRO_ID;
+    elsif(VOPR = 'u')then
+        update MEMBRO
+        set
+            MEMBRO_NOME = VAR_MEMBRO_NOME,
+            MEMBRO_RG = VAR_MEMBRO_RG,
+            MEMBRO_TELEFONE = VAR_MEMBRO_TELEFONE,
+            MEMBRO_CEP = VAR_MEMBRO_CEP
+        where
+            MEMBRO_ID = VAR_MEMBRO_ID;
+    end if;
+end CUD_MEMBRO;
+/
