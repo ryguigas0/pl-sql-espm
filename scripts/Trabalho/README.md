@@ -5,11 +5,7 @@
 ## MER
 
 ![MER do clube de jogos](./mer.png)
-## Resultado do script de criação `scripts/create_db.sql`:
-- Tabelas
-- Procedures
-- Functions
-- Views
-
-## Resultado do script de população `scripts/populate_db.sql`:
-Insere 10 registros em cada tabela criada
+## Funções de cada script
+- `scripts/create_tables.sql`: Criar as tabelas do banco de dados
+- `scripts/create_procedures.sql`: Cria os procedures para criar, deletar e atualizar registros
+- `scripts/populate_db.sql`: Popula o banco de dados com dados
