@@ -3,7 +3,8 @@ create table MEMBRO(
     MEMBRO_NOME varchar2(45)not null,
     MEMBRO_RG varchar2(9)not null,
     MEMBRO_TELEFONE varchar2(11)not null,
-    MEMBRO_CEP varchar2(8)not null
+    MEMBRO_CEP varchar2(8)not null,
+    MEMBRO_VALIDO NUMBER not null
 );
 
 create table CONVIDADO(
@@ -39,6 +40,7 @@ create table MEMBRO_LOG(
     MEMBRO_RG varchar2(9)not null,
     MEMBRO_TELEFONE varchar2(11)not null,
     MEMBRO_CEP varchar2(8)not null,
+    MEMBRO_VALIDO NUMBER not null,
     MEMBRO_LOG_ID NUMBER not null constraint MEMBRO_LOG_PK primary key,
     MEMEBRO_LOG_ALTERACAO DATE not null
 );

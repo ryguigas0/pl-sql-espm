@@ -4,7 +4,8 @@ create or replace procedure CUD_MEMBRO(
     VAR_MEMBRO_NOME MEMBRO.MEMBRO_NOME%TYPE,
     VAR_MEMBRO_RG MEMBRO.MEMBRO_RG%TYPE,
     VAR_MEMBRO_TELEFONE MEMBRO.MEMBRO_TELEFONE%TYPE,
-    VAR_MEMBRO_CEP MEMBRO.MEMBRO_CEP%TYPE
+    VAR_MEMBRO_CEP MEMBRO.MEMBRO_CEP%TYPE,
+    VAR_MEMBRO_VALIDO MEMBRO.MEMBRO_VALIDO%TYPE
 )is
 begin
     if(VAR_OPR = 'i')then
@@ -13,13 +14,15 @@ begin
             MEMBRO_NOME,
             MEMBRO_RG,
             MEMBRO_TELEFONE,
-            MEMBRO_CEP
+            MEMBRO_CEP,
+            MEMBRO_VALIDO
         )values(
             VAR_MEMBRO_ID,
             VAR_MEMBRO_NOME,
             VAR_MEMBRO_RG,
             VAR_MEMBRO_TELEFONE,
-            VAR_MEMBRO_CEP
+            VAR_MEMBRO_CEP,
+            1
         );
     elsif(VAR_OPR = 'd')then
         delete from MEMBRO
@@ -31,7 +34,8 @@ begin
             MEMBRO_NOME = VAR_MEMBRO_NOME,
             MEMBRO_RG = VAR_MEMBRO_RG,
             MEMBRO_TELEFONE = VAR_MEMBRO_TELEFONE,
-            MEMBRO_CEP = VAR_MEMBRO_CEP
+            MEMBRO_CEP = VAR_MEMBRO_CEP,
+            MEMBRO_VALIDO = VAR_MEMBRO_VALIDO
         where
             MEMBRO_ID = VAR_MEMBRO_ID;
     end if;
